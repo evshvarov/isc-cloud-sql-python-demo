@@ -1,9 +1,6 @@
 import iris
 import os
 from dotenv import load_dotenv
-# host = "k8s-edc81448-a8016263-43619b8c24-04f9d3b32dd23896.elb.us-east-1.amazonaws.com"
-# port = 1972
-# namespace = "USER"
 load_dotenv('.env') 
 host = os.environ.get('HOST')
 port = 1972

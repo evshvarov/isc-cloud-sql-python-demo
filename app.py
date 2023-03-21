@@ -2,7 +2,6 @@ import os
 import iris
 from flask import Flask, render_template
 
-
 app = Flask(__name__)
 
 env_config = os.getenv("APP_SETTINGS", "config.DevelopmentConfig")
@@ -15,10 +14,7 @@ def get_db_connection():
     namespace = "USER"
     username = app.config.get('IRIS_USERNAME')
     password = app.config.get('IRIS_PASSWORD')
-    # # print(username,password)
-    # username = "SQLAdmin"
-    # password = "@Cloud124"
-
+    
 
     conn = iris.connect(host, port, namespace, username, password)
     return conn
