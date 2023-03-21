@@ -1,6 +1,6 @@
 $ python3 -m venv venv
 $ source venv/bin/activate
-$ pip install -r requirements.txt
+$ python3 -m pip install -r requirements.txt
 $ pip install Flask
 $ pip freeze > requirements.txt
 $ heroku login
@@ -24,3 +24,5 @@ $ heroku config:set --remote prod \
   IRIS_USERNAME=SQLAdmin \
   IRIS_PASSWORD=Password \
   APP_SETTINGS=config.StagingConfig
+
+ps aux | grep flask
