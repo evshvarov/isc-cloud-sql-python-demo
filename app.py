@@ -1,7 +1,11 @@
 import os
-import iris
-from flask import Flask, render_template
+# import iris
+from flask import Flask, render_template, request, url_for, redirect
+import intersystems_iris.dbapi._DBAPI as iris
 
+
+
+# ...
 app = Flask(__name__)
 
 env_config = os.getenv("APP_SETTINGS", "config.DevelopmentConfig")
@@ -31,3 +35,26 @@ def index():
 
     # return f"The configured secret key is {secret_key}."
     return render_template('index.html', books=books)
+
+# ...
+
+@app.route('/create/', methods=('GET', 'POST'))
+def create():
+    if request.method == 'POST':
+        title = request.form['title']
+        author = request.form['author']
+        pages_num = int(request.form['pages_num'])
+        review = request.form['review']
+
+        conn = get_db_connection()
+        cur = conn.cursor()
+        cur.execute('INSERT INTO books (title, author, pages_num, review)'
+                    'VALUES (?, ?, ?, ?)',
+                    (title, author, pages_num, review))
+        conn.commit()
+        cur.close()
+        conn.close()
+        return redirect(url_for('index'))
+
+    return render_template('create.html')
+

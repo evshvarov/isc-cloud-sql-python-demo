@@ -47,6 +47,11 @@ $[SQL]server:USER> select * from books
 Time: 0.186s
 ```
 6. Let's run flask app.
+First let's turn on debug mode. Call in the terminal:
+
+export FLASK_APP=app
+export FLASK_ENV=development
+
 $ flask run
 Open in browser: http://127.0.0.1:5000/
 You should see the small web app listing this two records.
